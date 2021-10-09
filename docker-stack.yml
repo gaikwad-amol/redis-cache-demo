@@ -1,16 +1,5 @@
 version: '3.3'
 services:
-  spring-redis-cache-demo-app:
-    build: .
-    #container_name: spring-redis-cache-demo-app
-    image: personal/spring-redis-cache-demo-app
-    ports:
-      - "8081"
-    #  - "8081:8081"
-    networks:
-      - microservicesnet
-    depends_on:
-      - redis
 # docker run -p 16379:6379 -d --name redis-server redis:6.0 redis-server
   redis:
     container_name: redis-server-6
@@ -18,6 +7,13 @@ services:
     hostname: redis
     ports:
       - "6379:6379"
+    deploy:
+      replicas: 4
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
     networks:
       - microservicesnet
 networks:
