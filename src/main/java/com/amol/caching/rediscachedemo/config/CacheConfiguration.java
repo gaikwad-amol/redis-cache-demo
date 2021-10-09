@@ -21,7 +21,7 @@ public class CacheConfiguration {
 
     @Bean
     protected JedisConnectionFactory jedisConnectionFactory() {
-        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration("localhost", 16379);
+        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration("redis", 6379);
 //        configuration.setPassword("mypass");
 //        configuration.setDatabase(0);
 
